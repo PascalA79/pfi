@@ -25,43 +25,50 @@
                 <div class="headerLayout">
                     <img src="images/camera.png" alt="" data-toggle="tooltip" class="favicon"
                         title="Gestionnaire d'images">
-                   <div style="display:flex">
-                        <span class="header outLinedText tbg-yellow">
-                            P
-                        </span>
-                        <span class="header outLinedText tbg-orange">
-                            I
-                        </span>
-                        <span class="header outLinedText tbg-red">
-                            C
-                        </span>
-                        <span class="header outLinedText tbg-pink ">
-                            T
-                        </span>
-                        <span class="header outLinedText tbg-black">
-                            -
-                        </span>
-                        <span class="header outLinedText tbg-purple">
-                            C
-                        </span>
-                        <span class="header outLinedText tbg-blue">
-                            L
-                        </span>
-                        <span class="header outLinedText tbg-green">
-                            O
-                        </span>
-                        <span class="header outLinedText tbg-grass">
-                            U
-                        </span>
-                        <span class="header outLinedText tbg-yellow">
-                            D
-                        </span>
+                    <div style="display:flex">
+                        <span class="header outLinedText tbg-yellow">P</span>
+                        <span class="header outLinedText tbg-orange">I</span>
+                        <span class="header outLinedText tbg-red">C</span>
+                        <span class="header outLinedText tbg-pink ">T</span>
+                        <span class="header outLinedText tbg-black">-</span>
+                        <span class="header outLinedText tbg-purple">C</span>
+                        <span class="header outLinedText tbg-blue">L</span>
+                        <span class="header outLinedText tbg-green">O</span>
+                        <span class="header outLinedText tbg-grass">U</span>
+                        <span class="header outLinedText tbg-yellow">D</span>
                     </div>
-                    <span class="cmd fa fa-plus-square" id="newImageCmd" title="Ajouter un image"
-                        data-toggle="tooltip"></span>
+                    <span>
+                        <span class="cmd fa fa-plus-square" id="newImageCmd" title="Ajouter un image"
+                            data-toggle="tooltip"></span>
+                        <span class="cmd fa fa-sign-in" id="loginCmd" title="Connection"
+                            data-toggle="tooltip"></span>
+                        <span class="cmd fa fa-sign-out" id="logoutCmd" title="Déconnection"
+                            data-toggle="tooltip"></span>
+                        <span class="cmd fa fa-user-plus" id="signUpCmd" title="Créer un compte"
+                            data-toggle="tooltip"></span>
+                        <span class="cmd fa fa-search-plus" id="searchCmd" title="Ouvrir la barre de recherche"
+                            data-toggle="tooltip"></span>
+                        <span class="cmd fa fa-sort-amount-asc" id="sortCmd" title="Ordre de date descendante"
+                            data-toggle="tooltip"></span>
+                    </span>
                 </div>
             </div>
-
+            <div class="headerPanel">
+                <div class="headerLayout2">
+                    <div id="searchBar">
+                        <div class="searchBarLayout">
+                            <select id="searchUser" class="form-control" placeholder="Tous les usagers">
+                                <!-- filled programmatically-->
+                            </select>
+                            <span> <!-- skip a column --> </span>
+                            <input type="search" id="searchKeyword" class="form-control" placeholder="Recherche par mots-clés" />
+                            <span> <!-- skip a column --> </span>
+                            <span class="cmd fa fa-search"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="scrollContainer">
                 <div id="imagesList">
                     <!-- filled programmatically-->
@@ -110,6 +117,7 @@
             let searchCategory = "";
             let searchTitle = "";
             let hideSearchBar = true;
+            let sortAscending = false;
             let imageIdToDelete = 0; // used by confirmDeleteDlg
             let selectedCategory = "";
             let imagesCount = 50;
@@ -293,7 +301,32 @@
 
             function init_UI() {
                 $("#newImageCmd").click(newImage)
-
+                $("#searchCmd").click(e => {
+                    hideSearchBar = !hideSearchBar;
+                    if (hideSearchBar) {
+                        $("#searchBar").hide();
+                        $("#searchCmd").prop('title', "Ouvrir la barre de recherche");
+                        $("#searchCmd").addClass("fa-search-plus");
+                        $("#searchCmd").removeClass("fa-search-minus");
+                    } else {
+                        $("#searchBar").show();
+                        $("#searchCmd").prop('title', "Fermer la barre de recherche");
+                        $("#searchCmd").addClass("fa-search-minus");
+                        $("#searchCmd").removeClass("fa-search-plus");
+                    }
+                })
+                $("#sortCmd").click(e => {
+                    sortAscending = !sortAscending;
+                    if (sortAscending) {
+                        $("#sortCmd").prop('title', "Ordre de date ascendante");
+                        $("#sortCmd").addClass("fa-sort-amount-desc");
+                        $("#sortCmd").removeClass("fa-sort-amount-asc");
+                    } else {
+                        $("#sortCmd").prop('title', "Ordre de date descendante");
+                        $("#sortCmd").addClass("fa-sort-amount-asc");
+                        $("#sortCmd").removeClass("fa-sort-amount-desc");
+                    }
+                })
                 $("#imageDlg").dialog({
                     title: "...",
                     autoOpen: false,

@@ -11,7 +11,6 @@ body {
     height: 100vh;
     border: 1px solid lightgray;
 }
-
 .headerPanel {
     display: flex;
     flex-wrap: wrap;
@@ -20,8 +19,13 @@ body {
 }
 .headerLayout {
     display: grid;
-    grid-template-columns: 80px auto 60px;
+    grid-template-columns: 80px auto auto;
     align-items: center;
+}
+.headerLayout2 {
+    width:100%;
+    align-items: center;
+    background-color: gray;
 }
 .outLinedText {
     font-size: 30px !important;
@@ -29,6 +33,17 @@ body {
     -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: black;
     -webkit-text-fill-color: transparent;
+}
+#searchBar {
+    padding-top:10px;
+    display: none;
+    margin: 5px;
+    border-top: 1px solid lightgray;
+}
+.searchBarLayout {
+    display: grid;
+    grid-template-columns: 45% 2% 45% 2% 6%;
+    align-items: center;
 }
 
 .tbg-yellow {
