@@ -17,5 +17,13 @@
         "VerifyCode": "verified",
         "AvatarGUID": "",
         "AvatarURL": ""
+    },
+    {
+        "Id": 3,
+        "Name": "PascalAres",
+        "Email": "pascal.ares@hotmail.fr",
+        "Password": "201674467",
+        "Created": 1668186146,
+        "VerifyCode": "verified"
     }
 ]
